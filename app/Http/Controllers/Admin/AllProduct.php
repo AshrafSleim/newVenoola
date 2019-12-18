@@ -14,6 +14,7 @@ class AllProduct extends Controller
 {
     public function index(Request $request)
     {
+        $x=0;
         session()->forget('menu');
         session()->put('menu', 'allProduct');
         $categories=Gategory::all();
