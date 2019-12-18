@@ -53,6 +53,11 @@ Route::group(['middleware' => 'Lang'], function () {
         Route::get('/allSiteMarketProduct/{id}', 'AllMarkets@allProduct')->name('allSiteMarketProduct');
 
 
+        Route::get('/getResetPassword', 'Client@getResetPassword')->name('getResetPassword');
+        Route::post('/postResetPassword', 'Client@sendPasswordMail')->name('postResetPassword');
+        Route::get('reset/password/{token}', 'Client@reset_password');
+        Route::post('reset/password/{token}', 'Client@reset_password_final');
+
 //order route
         Route::group(['middleware' => 'auth'], function () {
             Route::get('/checkout', 'Checkout@indexs')->name('checkout');
