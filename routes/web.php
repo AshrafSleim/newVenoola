@@ -24,7 +24,8 @@ Route::get('en', 'Lang@en')->name('en');
 
 Route::group(['middleware' => 'Lang'], function () {
 
-
+    Route::get('auth/facebook', 'Auth\RegisterController@redirectToProvider')->name('facebook');
+    Route::get('auth/facebook/callback', 'Auth\RegisterController@handleProviderCallback');
 //    Route::get('/filter', function () {
 //        $categories = \App\Gategory::all();
 //        return view('site.recommend', compact('categories'));
