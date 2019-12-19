@@ -40,4 +40,10 @@ class User extends Authenticatable
 
         return $this->select('email')->where('email',$email)->first();
     }
+
+
+    function socialProviders()
+    {
+        return $this->hasMany(SocialProvider::class);
+    }
 }

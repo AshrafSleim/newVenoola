@@ -24,7 +24,8 @@ Route::get('en', 'Lang@en')->name('en');
 
 Route::group(['middleware' => 'Lang'], function () {
 
-
+    Route::get('auth/facebook', 'Auth\RegisterController@redirectToProvider')->name('facebook');
+    Route::get('auth/facebook/callback', 'Auth\RegisterController@handleProviderCallback');
 //    Route::get('/filter', function () {
 //        $categories = \App\Gategory::all();
 //        return view('site.recommend', compact('categories'));
@@ -51,6 +52,11 @@ Route::group(['middleware' => 'Lang'], function () {
         Route::get('/siteAllMarkets', 'AllMarkets@index')->name('siteAllMarkets');
         Route::get('/allSiteMarketProduct/{id}', 'AllMarkets@allProduct')->name('allSiteMarketProduct');
 
+
+        Route::get('/getResetPassword', 'Client@getResetPassword')->name('getResetPassword');
+        Route::post('/postResetPassword', 'Client@sendPasswordMail')->name('postResetPassword');
+        Route::get('reset/password/{token}', 'Client@reset_password');
+        Route::post('reset/password/{token}', 'Client@reset_password_final');
 
 //order route
         Route::group(['middleware' => 'auth'], function () {

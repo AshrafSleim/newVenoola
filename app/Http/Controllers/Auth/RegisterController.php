@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\SocialProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Socialite;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -72,4 +74,50 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver("facebook")->redirect();
+    }
+
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback()
+    {
+        try
+        {
+            $socialUser = Socialite::driver("facebook")->user();
+        }
+        catch(\Exception $e)
+        {
+            return redirect('/');
+        }
+        //check if we have logged provider
+        $socialProvider = SocialProvider::where('provider_id',$socialUser->getId())->first();
+        if(!$socialProvider)
+        {
+            //create a new user and provider
+            $user = User::firstOrCreate(
+                ['email' => $socialUser->getEmail()],
+                ['name' => $socialUser->getName()]
+            );
+
+            $user->socialProviders()->create(
+                ['provider_id' => $socialUser->getId(), 'provider' => "facebook"]
+            );
+
+        }
+        else
+            $user = $socialProvider->user;
+
+        auth()->login($user);
+        return redirect(route('siteHome'));
+    }
+
+
 }
