@@ -16,7 +16,7 @@
                     <label for="password" class="mb-0">{{trans('site.Password')}}</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="{{trans('site.Password')}}">
                     <small id="passwordHelpBlock" class="form-text text-right blue-text">
-                        <a href="">Reset Password</a>
+                        <a href="{{route('getResetPassword')}}">Reset Password</a>
                     </small>
                 </div>
                 <div class="form-group col-md-6">
