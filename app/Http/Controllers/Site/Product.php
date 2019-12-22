@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Site;
 
 use App\Gategory;
 use App\Http\Controllers\Controller;
+use App\RateProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
-
+use Illuminate\Support\Facades\Auth;
 class Product extends Controller
 {
     public function siteIndex(){
@@ -35,7 +36,9 @@ class Product extends Controller
         } else {
             $products = \App\Product::query()->orderBy('id', 'desc')->paginate(10);
         }
-
+        foreach ($products as $product){
+            $product['rate']=RateProduct::where('product_id',$product->id)->avg('rate');
+        }
         return view('site.products',compact('products','categories'));
     }
 
@@ -71,8 +74,31 @@ class Product extends Controller
 
 
     public function productInfo($id){
+        $rate="";
+        if(Auth::guard('web')->check()){
+            $user_id=auth()->user()->id;
+            $rate= RateProduct::where('product_id', $id)->where('user_id', $user_id)->first();
+        }
         $product =\App\Product::findOrFail($id);
-        return view('site.product-detail',compact('product'));
+        return view('site.product-detail',compact('product','rate'));
+    }
+
+
+    public function rateProduct($id,$rate){
+        $user_id=auth()->user()->id;
+        $rateProduct=RateProduct::where('product_id', $id)->where('user_id', $user_id)->first();
+        if($rateProduct == null){
+            RateProduct::create([
+                'product_id'=>$id,
+                'user_id'=>$user_id,
+                'rate'=>$rate,
+            ]);
+        }else{
+            RateProduct::where('product_id', $id)->where('user_id', $user_id)->update([
+                'rate' =>$rate,
+            ]);
+        }
+        return 'true';
     }
 
 }

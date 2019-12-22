@@ -15,13 +15,11 @@
                             <form action="{{route('siteProduct')}}" method="get">
                                 <input type="hidden" name="filter" value="1">
 
-                                <div class="title-left">
-                                    <h3>Search here</h3>
-                                </div>
+
                                 <input name="name" type="text" class="form-control border-r"
-                                       placeholder="Search By Name" value="{{isset($_GET['name']) ?$_GET['name'] : ''}}">
+                                       placeholder="{{trans('site.searchbyname')}}" value="{{isset($_GET['name']) ?$_GET['name'] : ''}}">
                                 <select name="category"  class="form-control border-r">
-                                    <option value="">Search By Category</option>
+                                    <option value="">{{trans('site.searchcategory')}}</option>
                                     @foreach($categories as $category)
                                         @if(isset($_GET['category']))
                                             <option value="{{$category->id}}" {{$_GET['category'] ==$category->id ?'selected' : ''}}>{{session()->get('lang') == 'ar' ? $category->nameAr : $category->name}}</option>
@@ -32,11 +30,11 @@
                                 </select>
                                 </br>
                                 <input name="priceFrom" type="text" class="form-control border-r"
-                                       placeholder="Search By Price From" value="{{isset($_GET['priceFrom']) ?$_GET['priceFrom'] : ''}}">
+                                       placeholder="{{trans('site.searcbypricefrom')}}" value="{{isset($_GET['priceFrom']) ?$_GET['priceFrom'] : ''}}">
                                 <input name="priceTo" type="text" class="form-control border-r"
-                                       placeholder="Search By Price To" value="{{isset($_GET['priceTo']) ?$_GET['priceTo'] : ''}}">
+                                       placeholder="{{trans('site.searchbypriceto')}}" value="{{isset($_GET['priceTo']) ?$_GET['priceTo'] : ''}}">
                                 <input name="age" type="text" class="form-control border-r"
-                                       placeholder="Search By Age " value="{{isset($_GET['age']) ?$_GET['age'] : ''}}">
+                                       placeholder="{{trans('site.searchbyage')}} " value="{{isset($_GET['age']) ?$_GET['age'] : ''}}">
 
                                 <button type="submit"> <i class="fa fa-search"></i> </button>
                             </form>
@@ -50,24 +48,14 @@
                         <div class="product-item-filter row">
                             <div class="col-12 col-sm-8 text-center text-sm-left">
                                 <div class="toolbar-sorter-right">
-                                    <span>Sort by </span>
+                                    <span>{{trans('site.sortby')}}</span>
                                     <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-
-
-                                        <option value="2">High Price → High Price</option>
-                                        <option value="3">Low Price → High Price</option>
-                                        <option value="4">Best Selling</option>
+                                        <option value="2">{{trans('site.high')}}</option>
+                                        <option value="3">{{trans('site.low')}}</option>
+                                        <option value="4">{{trans('site.bestselling')}}</option>
                                     </select>
                                 </div>
 
-                            </div>
-                            <div class="col-12 col-sm-4 text-center text-sm-right">
-                                <ul class="nav nav-tabs ml-auto">
-                                    <li>
-                                        <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
-                                    </li>
-
-                                </ul>
                             </div>
                         </div>
 
@@ -77,27 +65,26 @@
                                     <div class="row">
                                         @foreach($products as $product)
                                             @if($product->market->active == 'active' && $product->active == 'active')
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <div class="type-lb">
-                                                            <p class="sale">Sale</p>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <!--<p class="sale">Sale</p>-->
+                                                            </div>
+                                                            <a href="{{route('siteProductDetail',$product->id)}}" data-toggle="tooltip" data-placement="right" title="View"><img src="{{url('/')}}/public/uploads/{{$product->image}}" class="img-fluid" alt="Image"></a>
+                                                            <a class="cart" id="{{ $product->id }}"href="#">{{trans('site.Add to Cart')}}</a>
+
                                                         </div>
-                                                        <img src="{{url('/')}}/uploads/{{$product->image}}" class="img-fluid" alt="Image">
-                                                        <div class="mask-icon">
-                                                            <ul>
-                                                                <li><a href="{{route('siteProductDetail',$product->id)}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            </ul>
-                                                            <a class="cart" id="{{ $product->id }}"href="#">Add to Cart</a>
+                                                        <div class="why-text">
+                                                            <h4>{{session()->get('lang') == 'ar' ? $product->nameAr : $product->name}}</h4>
+                                                            <h5>{{$product->market->name}} </h5>
+                                                            <h5> {{$product->price}}</h5>
+                                                            <label for="input-1" class="control-label">Rate our Product</label>
+                                                            <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" value="{{$product->rate}}" data-max="5" data-step="1" disabled readonly>
+
                                                         </div>
-                                                    </div>
-                                                    <div class="why-text">
-                                                        <h4>{{session()->get('lang') == 'ar' ? $product->nameAr : $product->name}}</h4>
-                                                        <h5>{{$product->market->name}} </h5>
-                                                        <h5> {{$product->price}}</h5>
                                                     </div>
                                                 </div>
-                                            </div>
                                             @endif
 
                                         @endforeach
