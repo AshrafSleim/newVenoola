@@ -62,6 +62,8 @@ Route::group(['middleware' => 'Lang'], function () {
         Route::group(['middleware' => 'auth'], function () {
             Route::get('/checkout', 'Checkout@indexs')->name('checkout');
             Route::post('/checkout', 'Checkout@saveOrder')->name('postCheckout');
+            Route::get('/rateProduct/{id}/{rate}','Product@rateProduct')->name('siteRateProduct');
+
         });
     });
 

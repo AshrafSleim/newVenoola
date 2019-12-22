@@ -16,18 +16,40 @@
     <meta name="author" content="">
 
     <!-- Site Icons -->
+
     <link rel="shortcut icon" href="{{url('/')}}/siteDesign/images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="{{url('/')}}/siteDesign/images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{url('/')}}/siteDesign/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url('/')}}/siteDesign/css/lightbox.css">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="{{url('/')}}/siteDesign/css/style.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{url('/')}}/siteDesign/css/responsive.css">
-    <!-- Custom CSS -->
+    @if(session()->get('lang') == 'ar' )
+        <link href="{{url('/')}}/siteDesign/css/rtl-nav.css" rel="stylesheet" />
+    @else
+        <link rel="stylesheet" href="{{url('/')}}/siteDesign/css/style.css">
+    @endif
+<!-- Responsive CSS -->
+    @if(session()->get('lang') == 'ar' )
+        <link rel="stylesheet" href="{{url('/')}}/siteDesign/css/rtl-responsive.css">
+    @else
+        <link rel="stylesheet" href="{{url('/')}}/siteDesign/css/responsive.css">
+    @endif
+<!-- Custom CSS -->
     <link rel="stylesheet" href="{{url('/')}}/siteDesign/css/custom.css">
-    <link href="{{url('/')}}/siteDesign/css/main.css" rel="stylesheet" />
+    @if(session()->get('lang') == 'ar' )
+        <link href="{{url('/')}}/siteDesign/css/rtl.css" rel="stylesheet" />
+
+    @else
+        <link href="{{url('/')}}/siteDesign/css/main.css" rel="stylesheet" />
+
+    @endif
+
+    <link href="{{url('/')}}/siteDesign/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+
+
+
+
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -41,7 +63,8 @@
 <!-- Start Main Top -->
 <header class="main-header">
     <!-- Start Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+
+    <nav   class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
         <div class="container">
             <!-- Start Header Navigation -->
             <div class="navbar-header">
@@ -54,41 +77,41 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
-                <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                    <li class="nav-item active"><a class="nav-link" href="{{route('siteHome')}}">Home</a></li>
+                <ul class="nav navbar-nav ml-auto" >
+                    <li class="nav-item active"><a class="nav-link" href="{{route('siteHome')}}">{{trans('site.home')}}</a></li>
 
-                    <li class="nav-item"><a class="nav-link" href="{{route('siteProduct')}}">Product</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('siteAllMarkets')}}">Shope</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('siteProduct')}}">{{trans('site.product')}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('siteAllMarkets')}}">{{trans('site.shop')}}</a></li>
 
 
-                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">{{trans('site.about')}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">{{trans('site.contact')}}</a></li>
                     @if(Auth::guard('web')->check())
-                        <li class="nav-item"><a class="nav-link" href="{{route('siteLogout')}}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('siteLogout')}}">{{trans('site.logout')}}</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">log in</a>
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">{{trans('site.login')}}</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{route('siteLogin')}}">Client</a></li>
-                                <li><a href="{{route('showVendorLoginForm')}}">Vendor</a></li>
+                                <li><a href="{{route('siteLogin')}}">{{trans('site.client')}}</a></li>
+                                <li><a href="{{route('showVendorLoginForm')}}">{{trans('site.vendor')}}</a></li>
 
                             </ul>
                         </li>
 
                         <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Register</a>
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">{{trans('site.register')}}</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{route('siteRegister')}}">Client</a></li>
-                                <li><a href="{{route('vendorRegister')}}">Vendor</a></li>
+                                <li><a href="{{route('siteRegister')}}">{{trans('site.client')}}</a></li>
+                                <li><a href="{{route('vendorRegister')}}">{{trans('site.vendor')}}</a></li>
 
                             </ul>
                         </li>
                     @endif
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Language</a>
+                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">{{trans('site.lang')}}</a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('en')}}">EN</a></li>
-                            <li><a href="{{route('ar')}}">عربى</a></li>
+                            <li><a href="{{route('en')}}">{{trans('site.en')}}</a></li>
+                            <li><a href="{{route('ar')}}">{{trans('site.ar')}}</a></li>
 
                         </ul>
                     </li>
@@ -138,6 +161,7 @@
         </div>
         <!-- End Side Menu -->
     </nav>
+
     <!-- End Navigation -->
 </header>
 <!-- End Main Top -->
@@ -147,11 +171,11 @@
     <div class="container">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="{{trans('site.search')}}">
             <select class="browser-default custom-select input-group-addon" >
-                <option id="search-category" selected>Search By..</option>
-                <option id="search-category" value="1">Name</option>
-                <option id="search-category" value="2">Category</option>
+                <option id="search-category" selected>{{trans('site.search')}}</option>
+                <option id="search-category" value="1">{{trans('site.namesearch')}}</option>
+                <option id="search-category" value="2">{{trans('site.categorysearch')}}</option>
 
             </select>
             <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
