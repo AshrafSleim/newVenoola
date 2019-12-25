@@ -22,6 +22,8 @@ class CreateOrdersTable extends Migration
             $table->string('code');
             $table->string('pay')->default('new');
             $table->integer('user_id');
+            $table->string('promo')->nullable();
+            $table->integer('discount')->nullable();
             $table->timestamps();
         });
     }

@@ -10,10 +10,38 @@ use Illuminate\Support\Facades\URL;
 
 class AllMarkets extends Controller
 {
-    public function index(){
-      $markets=  Market::where('active','active')->paginate(10);
+    public function index(Request $request){
+        if ($request->filter == 1) {
+            $query = $this->returnSearchResultMarket($request);
+            $markets = $query->where('active', 'active')->orderBy('id', 'desc')->paginate(10);
+            $markets->setPath(URL::current() . "?" . "filter=1" .
+                "&name=" . $request->name
+            );
+        } else {
+
+
+            $markets = Market::where('active', 'active')->paginate(10);
+        }
         return view('site.products-shope',compact('markets'));
     }
+
+
+    public function returnSearchResultMarket($request)
+    {
+        $name = $request->name;
+        $markets = Market::query();
+        $markets->where(function ($query) use ($name) {
+            if ($name) {
+                $query->where('name', 'LIKE', ['%' . $name . '%']);
+            }
+
+            return $query;
+        });
+
+        return $markets;
+    }
+
+
 
 
 

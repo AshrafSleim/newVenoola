@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9830596-b5ce-433f-88ee-56f6cc2278c3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/promo.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/mail/checkoutEmail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Site/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Site/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/site/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/layouts/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Site/AllMarkets.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Site/AllMarkets.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Site/Checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Site/Checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_11_28_133133_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_11_28_133133_create_orders_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/site/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/checkout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/site/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/layouts/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/site/product-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/product-detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/site/products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/products.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/site/products-shope.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/products-shope.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -136,7 +140,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mintravel/mintravel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/mail" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -149,11 +153,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\TacWeed\venoola\resources\views\mail" />
       <recent name="E:\TacWeed\venoola\resources\views\admin" />
       <recent name="E:\TacWeed\venoola\resources\views\site" />
       <recent name="E:\TacWeed\venoola\resources\views\employee" />
       <recent name="E:\TacWeed\venoola\routes" />
-      <recent name="E:\TacWeed\venoola\resources\views\userVendor" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -200,6 +204,7 @@
       <workItem from="1576576296635" duration="628000" />
       <workItem from="1576665341502" duration="17217000" />
       <workItem from="1577004584974" duration="9391000" />
+      <workItem from="1577262218815" duration="9370000" />
     </task>
     <servers />
   </component>

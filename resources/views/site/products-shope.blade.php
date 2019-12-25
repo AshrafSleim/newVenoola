@@ -7,6 +7,30 @@
     <!-- Start Shop Page  -->
     <div class="shop-box-inner">
         <div class="container">
+            <form action="{{route('siteAllMarkets')}}" method="get">
+                <div class="box-body">
+                    <input type="hidden" name="filter" value="1">
+                    <div class="row">
+
+
+                        <div class="col-md-2 col-sm-6 col-xs-12 lft padding-bb">
+                            <div class="form-group nw-pd">
+                                <input name="name" type="text" class="form-control border-r"
+                                       placeholder="Search By Name" value="{{isset($_GET['name']) ?$_GET['name'] : ''}}">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 col-sm-6 col-xs-12 lft padding-bb">
+                            <div class=" nw-pd col-md-1 col-md-offset-6">
+                                <button type="submit"> <i class="fa fa-search"></i> </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
             <div class="row nofilter" id="nofilter">
 
                 <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
