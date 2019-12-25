@@ -46,7 +46,10 @@
                                 <input type="text" class="form-control" id="address" name="address" value="{{old('address')}}" placeholder="" required>
                                 <div class="invalid-feedback"> Please enter your shipping address. </div>
                             </div>
-
+                            <div class="mb-3">
+                                <label for="promo">Promo </label>
+                                <input type="text" class="form-control" id="promo" name="promo" value="{{old('promo')}}" >                                <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
+                            </div>
 
                             <div class="col-12 d-flex shopping-box">
                                 <button type="submit" class="ml-auto btn hvr-hover" style="color: white;">Place Order</button>

@@ -110,11 +110,18 @@
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">{{trans('site.lang')}}</a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('en')}}">{{trans('site.en')}}</a></li>
-                            <li><a href="{{route('ar')}}">{{trans('site.ar')}}</a></li>
+                            @if(session()->get('lang') == 'ar' )
+                                <li><a href="{{route('en')}}">{{trans('site.en')}}</a></li>
+                            @else
+                                <li><a href="{{route('ar')}}">{{trans('site.ar')}}</a></li>
+                            @endif
 
                         </ul>
                     </li>
+                    @if(Auth::guard('web')->check())
+                    <li class="nav-item"><a class="nav-link" href="#">{{auth()->user()->name}}</a></li>
+                    @endif
+
 
                 </ul>
             </div>

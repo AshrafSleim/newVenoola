@@ -33,6 +33,11 @@ Route::group(['middleware' => 'Admin:admin'], function () {
         Route::get('allMarkets', 'Markets@index')->name('allMarkets.index');
         Route::post('/deleteMarket/{id}', 'Markets@delete')->name('deleteMarket.delete');
         Route::post('/updateStatus/{id}', 'Markets@updateStatus')->name('updateMarketStatus');
+//pormo route
+        Route::get('allPromo', 'Promo@index')->name('allPromo.index');
+        Route::post('/deletePromo/{id}', 'Promo@delete')->name('deletePromo.delete');
+        Route::post('/AddPromo', 'Promo@addNew')->name('AddPromo');
+
 //category route
         Route::get('allCategories', 'Category@index')->name('allCategories.index');
         Route::post('/deleteCategory/{id}', 'Category@delete')->name('deleteCategory.delete');
